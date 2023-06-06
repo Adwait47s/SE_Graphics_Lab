@@ -34,7 +34,7 @@ void drawindmill()
 }
 
 
-void vishal()
+void adwait()
 {
  glClear(GL_COLOR_BUFFER_BIT);
  glLoadIdentity();
@@ -69,7 +69,7 @@ int main(int argc, char **argv)
  glMatrixMode(GL_PROJECTION);
  glLoadIdentity();
  glMatrixMode(GL_MODELVIEW);
- glutDisplayFunc(vishal);
+ glutDisplayFunc(adwait);
  glutTimerFunc(200,doframe,0);
  glutMainLoop();
  
