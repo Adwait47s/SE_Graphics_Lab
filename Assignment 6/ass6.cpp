@@ -93,7 +93,7 @@ void scale(float sx, float sy)
    
 }
 
-void vishal()
+void adwait()
 {
  glClear(GL_COLOR_BUFFER_BIT);
  glColor3f(1,1,1);
@@ -170,7 +170,7 @@ int main(int argc, char **argv)
  glClearColor(0,0,0,1);
  gluOrtho2D(0,500,0,500);
  glMatrixMode(GL_PROJECTION);
- glutDisplayFunc(vishal);
+ glutDisplayFunc(adwait);
  glutMainLoop();
  
 return 0;
