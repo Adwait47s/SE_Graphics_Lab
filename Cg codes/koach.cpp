@@ -1,45 +1,43 @@
 #include<GL/freeglut.h>
 #include<GL/gl.h>
 #include<math.h>
+#define radian (3.14/180)
 
 
+void drawcurve(float xa , float ya , float xb , float yb , int n){
 
-void koch(float x1, float y1, float x2, float y2, int n)
-{
-  float x3,y3,x4,y4,x,y;
-  
-  float p=60*3.142/180;
-  
-  x3=(2*x1+x2)/3;
-  y3=(2*y1+y2)/3;
-  x4=(x1+2*x2)/3;
-  y4=(y1+2*y2)/3;
-  
-  x=x3+(x4-x3)*cos(p)+(y4-y3)*sin(p);
-  y=y3-(x4-x3)*sin(p)+(y4-y3)*cos(p);
-  
-  if(n>0)
-  {
-   koch(x1,y1,x3,y3,n-1);
-   koch(x3,y3,x,y,n-1);
-   koch(x,y,x4,y4,n-1);
-   koch(x4,y4,x2,y2,n-1);
-  }
-  else
-  {
-   glVertex2i(x1,y1);
-   glVertex2i(x3,y3);
-   
-   glVertex2i(x3,y3);
-   glVertex2i(x,y);
-   
-   glVertex2i(x,y);
-   glVertex2i(x4,y4);
-   
-   glVertex2i(x4,y4);
-   glVertex2i(x2,y2);
-   
-  }
+    float xc ,yc ,xd ,yd , midx ,midy;
+
+    xc = (2*xa + xb )/3;
+    yc = (2*ya + yb) / 3;
+    xd = (2*xb + xa) / 3;
+    yd = (2*yb + ya)/3;
+
+    midx = xc + ((xd - xc)*cos(60*radian)) + ((yd-yc)*sin(60*radian));
+    midy = yc - ((xd-xc)*sin(60*radian)) + ((yd-yc)*cos(60*radian));
+
+    if(n > 0){
+
+        drawcurve(xa,ya,xc,yc,n-1);
+        drawcurve(xc,yc,midx,midy,n-1);
+        drawcurve(midx,midy,xd,yd,n-1);
+        drawcurve(xd,yd,xb,yb,n-1);
+
+    }
+    else{
+
+        glVertex2f(xa,ya);
+        glVertex2f(xc,yc);
+
+        glVertex2f(xc,yc);
+        glVertex2f(midx,midy);
+
+        glVertex2f(midx,midy);
+        glVertex2f(xd,yd);
+
+        glVertex2f(xd,yd);
+        glVertex2f(xb,yb);
+    }
 }
 
 
